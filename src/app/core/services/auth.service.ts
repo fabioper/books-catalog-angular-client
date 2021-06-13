@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
+import {environment} from "../../../environments/environment";
 
 interface User {
   email: string;
@@ -43,5 +44,9 @@ export class AuthService {
       };
     })
     return this._loggedUser;
+  }
+
+  register() {
+    window.location.href = `${environment.stsAuthority}/signup?returnUrl=${window.location.origin}`;
   }
 }

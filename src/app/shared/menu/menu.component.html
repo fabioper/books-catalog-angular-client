@@ -3,6 +3,10 @@
     You are logged as: <{{ authService.loggedUser?.email }}> {{ authService.loggedUser?.name }}
   </div>
 
-  <button *ngIf="!authService.isLogged" (click)="authService.login()">Login</button>
+  <ng-container *ngIf="!authService.isLogged">
+    <button (click)="authService.login()">Login</button>
+    <button (click)="authService.register()">Register</button>
+  </ng-container>
+
   <button *ngIf="authService.isLogged" (click)="authService.logout()">Logout</button>
 </header>
