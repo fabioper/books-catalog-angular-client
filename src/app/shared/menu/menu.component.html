@@ -1,1 +1,8 @@
-<p>menu works!</p>
+<header>
+  <div *ngIf="authService.isLogged">
+    You are logged as: <{{ authService.loggedUser?.email }}> {{ authService.loggedUser?.name }}
+  </div>
+
+  <button *ngIf="!authService.isLogged" (click)="authService.login()">Login</button>
+  <button *ngIf="authService.isLogged" (click)="authService.logout()">Logout</button>
+</header>
