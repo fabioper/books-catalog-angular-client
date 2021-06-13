@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {AuthModule, LogLevel, OidcConfigService} from "angular-auth-oidc-client";
 import {environment} from "../environments/environment";
 import {MenuModule} from "./shared/menu/menu.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -28,7 +29,8 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     BrowserModule,
     AppRoutingModule,
     AuthModule.forRoot(),
-    MenuModule
+    MenuModule,
+    BrowserAnimationsModule
   ],
   providers: [
     OidcConfigService,
