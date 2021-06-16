@@ -1,0 +1,32 @@
+<header>
+  <div class="container">
+    <a href="/">
+      <h1 class="p-hidden-accessible">Virtual Library</h1>
+      <img src="/assets/logo.svg" alt="" class="logo">
+    </a>
+
+    <span class="p-input-icon-right p-input-filled">
+      <i class="pi pi-search"></i>
+      <input type="search" pInputText placeholder="Pesquisar">
+    </span>
+
+    <div>
+      <button *ngIf="!authService.isLogged"
+              pButton type="button"
+              icon="pi pi-sign-in"
+              class="p-button-outlined p-button-rounded"
+              label="Login"
+              (click)="notLoggedMenu.toggle($event)"></button>
+
+      <button *ngIf="authService.isLogged"
+              pButton type="button"
+              icon="pi pi-user"
+              class="p-button-outlined p-button-rounded"
+              [label]="authService.loggedUser!.name"
+              (click)="loggedMenu.toggle($event)"></button>
+    </div>
+  </div>
+</header>
+
+<p-menu #loggedMenu [popup]="true" [model]="menuItems"></p-menu>
+<p-menu #notLoggedMenu [popup]="true" [model]="menuItems"></p-menu>
