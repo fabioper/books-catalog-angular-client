@@ -9,9 +9,14 @@ import { environment } from "../../../../environments/environment";
 })
 export class BooksService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getBooks(): Observable<BookModel[]> {
     return this.http.get<BookModel[]>(`${ environment.apiRoot }/api/books`);
+  }
+
+  getBookDetails(bookId: number): Observable<BookModel> {
+    return this.http.get<BookModel>(`${ environment.apiRoot }/api/books/${ bookId }`);
   }
 }

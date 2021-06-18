@@ -10,6 +10,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './home/books/books.component';
 import { SharedModule } from "./shared/shared.module";
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { DialogService } from "primeng/dynamicdialog";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -28,7 +30,8 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
   declarations: [
     AppComponent,
     HomeComponent,
-    BooksComponent
+    BooksComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     SharedModule
   ],
   providers: [
+    DialogService,
     OidcConfigService,
     {
       provide: APP_INITIALIZER,

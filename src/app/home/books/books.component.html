@@ -3,7 +3,7 @@
     <h1>Novos</h1>
 
     <div class="books">
-      <a [routerLink]="book.id?.toString()" class="book" *ngFor="let book of books">
+      <a [routerLink]="[book.id!]" class="book" *ngFor="let book of books">
         <img [src]="book.coverUri || defaultCoverUri" [alt]="book.title + ' cover'" class="book-cover">
         <div class="book-description">
           <span class="book-release-date">{{ book.releaseDate | date: 'YYYY' }}</span>
