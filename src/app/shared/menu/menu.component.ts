@@ -33,6 +33,13 @@ export class MenuComponent implements OnInit {
         command: () => this.authService.signup()
       },
       {
+        label: 'Catálogo',
+        icon: 'pi pi-fw pi-book',
+        visible: !this.authService.isLogged,
+        styleClass: 'p-button-danger',
+        routerLink: 'catalog'
+      },
+      {
         label: 'Logoff',
         icon: 'pi pi-fw pi-sign-out',
         visible: this.authService.isLogged,
