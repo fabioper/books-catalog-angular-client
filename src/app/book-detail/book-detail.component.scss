@@ -1,17 +1,35 @@
 section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
   gap: 2rem;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  max-height: 680px;
+
+  @media (max-width: 1000px) {
+    max-height: 250px;
+  }
 }
 
 h2 {
   font-size: 1rem;
 }
 
-:host ::ng-deep p-fieldset {
-  margin: 1rem 0;
-  display: block;
+:host ::ng-deep {
+  p-fieldset {
+    margin: 1rem 0;
+    display: block;
 
-  .p-fieldset-legend {
-    border: none;
+    .p-fieldset-legend {
+      border: none;
+    }
   }
 }
