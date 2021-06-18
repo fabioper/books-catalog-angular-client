@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CatalogManagementRoutingModule } from './catalog-management-routing.module';
 import { CatalogManagementComponent } from './catalog-management.component';
+import { TabViewModule } from "primeng/tabview";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CatalogManagementComponent } from './catalog-management.component';
   ],
   imports: [
     CommonModule,
-    CatalogManagementRoutingModule
+    CatalogManagementRoutingModule,
+    TabViewModule
   ]
 })
 export class CatalogManagementModule { }
