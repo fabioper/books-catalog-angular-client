@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiRoot: 'https://localhost:5000',
+  apiRoot: 'https://localhost:5001',
   stsAuthority: 'https://localhost:5001',
   clientId: 'angular-client'
 };
