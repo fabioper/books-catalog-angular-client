@@ -10,6 +10,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './home/books/books.component';
 import { SharedModule } from "./shared/shared.module";
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { DialogService } from "primeng/dynamicdialog";
+import { MessageService } from "primeng/api";
+import { ToastModule } from "primeng/toast";
+import { PanelModule } from "primeng/panel";
+import { FieldsetModule } from "primeng/fieldset";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -28,7 +34,8 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
   declarations: [
     AppComponent,
     HomeComponent,
-    BooksComponent
+    BooksComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +43,15 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     AuthModule.forRoot(),
     MenuModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    ToastModule,
+    PanelModule,
+    FieldsetModule
   ],
   providers: [
+    DialogService,
     OidcConfigService,
+    MessageService,
     {
       provide: APP_INITIALIZER,
       useFactory: configureAuth,

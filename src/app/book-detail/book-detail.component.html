@@ -1,0 +1,23 @@
+<section>
+  <figure>
+    <img [src]="book?.coverUri || defaultCoverUri" alt="">
+  </figure>
+
+  <div class="details">
+    <p-fieldset legend="Descrição">
+      {{ book?.description }}
+    </p-fieldset>
+
+    <p-fieldset legend="Autor(es)">
+      {{ book?.authors | authors }}
+    </p-fieldset>
+
+    <p-fieldset legend="Gêneros">
+      {{ book?.genres | genres }}
+    </p-fieldset>
+
+    <p-fieldset legend="Lançamento">
+      {{ book?.releaseDate | date: 'dd/MM/YYYY' }}
+    </p-fieldset>
+  </div>
+</section>
