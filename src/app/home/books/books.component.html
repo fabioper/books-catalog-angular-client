@@ -1,0 +1,16 @@
+<section>
+  <div class="container">
+    <h1>Novos</h1>
+
+    <div class="books">
+      <a [routerLink]="book.id?.toString()" class="book" *ngFor="let book of books">
+        <img [src]="book.coverUri || defaultCoverUri" [alt]="book.title + ' cover'" class="book-cover">
+        <div class="book-description">
+          <span class="book-release-date">{{ book.releaseDate | date: 'YYYY' }}</span>
+          <h2 class="book-title">{{ book.title }}</h2>
+          <span class="book-author">{{ book.authors | authors }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

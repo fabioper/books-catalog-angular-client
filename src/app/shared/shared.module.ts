@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthorsPipe } from './pipes/authors.pipe';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    AuthorsPipe
+  ],
+  exports: [
+    AuthorsPipe
+  ],
   imports: [
     CommonModule
   ]
