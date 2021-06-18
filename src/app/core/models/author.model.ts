@@ -1,4 +1,5 @@
 export class AuthorModel {
   id?: number;
-  name?: string;
+  firstName?: string;
+  lastName?: string;
 }

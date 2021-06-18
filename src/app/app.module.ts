@@ -9,6 +9,7 @@ import {MenuModule} from "./shared/menu/menu.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './home/books/books.component';
+import { SharedModule } from "./shared/shared.module";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -34,7 +35,8 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     AppRoutingModule,
     AuthModule.forRoot(),
     MenuModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     OidcConfigService,
