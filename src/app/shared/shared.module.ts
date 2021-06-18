@@ -13,6 +13,6 @@ import { AuthorsPipe } from './pipes/authors.pipe';
   ],
   imports: [
     CommonModule
-  ]
+  ],
 })
 export class SharedModule { }

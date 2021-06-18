@@ -12,6 +12,8 @@ import { BooksComponent } from './home/books/books.component';
 import { SharedModule } from "./shared/shared.module";
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { DialogService } from "primeng/dynamicdialog";
+import { MessageService } from "primeng/api";
+import { ToastModule } from "primeng/toast";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -39,11 +41,13 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     AuthModule.forRoot(),
     MenuModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    ToastModule
   ],
   providers: [
     DialogService,
     OidcConfigService,
+    MessageService,
     {
       provide: APP_INITIALIZER,
       useFactory: configureAuth,

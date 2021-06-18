@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { BooksService } from "../core/services/books/books.service";
 import { BookModel } from "../core/models/book.model";
-import { MessageService } from "primeng/api";
-import { catchError } from "rxjs/operators";
+import { ToastrService } from "../shared/services/toastr.service";
 
 export interface BookDetailsComponentConfig {
   bookId: number;
@@ -16,28 +15,32 @@ export interface BookDetailsComponentConfig {
 })
 export class BookDetailComponent implements OnInit {
   private _bookData: BookDetailsComponentConfig;
-  private book: BookModel | undefined;
+  book: BookModel | undefined;
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
-              private messageService: MessageService,
+              private toastrService: ToastrService,
               private booksService: BooksService) {
     this._bookData = this.config.data
   }
 
   ngOnInit(): void {
-    this.loadBookData(this._bookData.bookId)
+    this.loadBookData(this._bookData.bookId).then()
   }
 
-  private loadBookData(bookId: number) {
-    this.booksService.getBookDetails(bookId).pipe(
-      catchError(err => {
-
-      })
-    ).subscribe(book => {
-      this.book = book;
+  private async loadBookData(bookId: number) {
+    try {
+      this.book = await this.booksService.getBookDetails(bookId).toPromise();
       this.config.showHeader = true;
       this.config.header = this.book.title;
-    })
+    } catch (e) {
+      if (e.status !== 404) {
+        this.toastrService.error('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde');
+      } else {
+        this.toastrService.error('O livro especificado não se encontra em nosso catálogo ainda.')
+      }
+
+      this.ref.close();
+    }
   }
 }

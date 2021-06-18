@@ -49,7 +49,7 @@ export class BooksComponent implements OnInit {
     })
 
     ref.onClose.subscribe(() => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/']).then()
     })
   }
 }
