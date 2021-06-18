@@ -14,6 +14,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { DialogService } from "primeng/dynamicdialog";
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
+import { PanelModule } from "primeng/panel";
+import { FieldsetModule } from "primeng/fieldset";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -42,7 +44,9 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     MenuModule,
     BrowserAnimationsModule,
     SharedModule,
-    ToastModule
+    ToastModule,
+    PanelModule,
+    FieldsetModule
   ],
   providers: [
     DialogService,

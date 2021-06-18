@@ -16,6 +16,7 @@ export interface BookDetailsComponentConfig {
 export class BookDetailComponent implements OnInit {
   private _bookData: BookDetailsComponentConfig;
   book: BookModel | undefined;
+  defaultCoverUri = 'https://via.placeholder.com/250x400?text=Sem+Capa';
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,

@@ -1,0 +1,17 @@
+section {
+  display: flex;
+  gap: 2rem;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+:host ::ng-deep p-fieldset {
+  margin: 1rem 0;
+  display: block;
+
+  .p-fieldset-legend {
+    border: none;
+  }
+}

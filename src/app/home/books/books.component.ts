@@ -4,6 +4,7 @@ import { BookModel } from "../../core/models/book.model";
 import { DialogService } from "primeng/dynamicdialog";
 import { BookDetailComponent, BookDetailsComponentConfig } from "../../book-detail/book-detail.component";
 import { ActivatedRoute, Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
 
 interface Book {
   releaseDate: Date;
