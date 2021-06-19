@@ -12,10 +12,11 @@ import { BooksComponent } from './home/books/books.component';
 import { SharedModule } from "./shared/shared.module";
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { DialogService } from "primeng/dynamicdialog";
-import { MessageService } from "primeng/api";
+import { ConfirmationService, MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { PanelModule } from "primeng/panel";
 import { FieldsetModule } from "primeng/fieldset";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -46,12 +47,14 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     SharedModule,
     ToastModule,
     PanelModule,
-    FieldsetModule
+    FieldsetModule,
+    ConfirmDialogModule
   ],
   providers: [
     DialogService,
     OidcConfigService,
     MessageService,
+    ConfirmationService,
     {
       provide: APP_INITIALIZER,
       useFactory: configureAuth,

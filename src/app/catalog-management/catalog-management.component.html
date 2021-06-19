@@ -1,15 +1,15 @@
 <main>
   <div class="container">
     <p-tabView>
-      <p-tabPanel header="Livros">
+      <p-tabPanel header="Livros" leftIcon="pi pi-book">
         <ng-template pTemplate="content">
-          Livros
+          <app-books-catalog></app-books-catalog>
         </ng-template>
       </p-tabPanel>
 
-      <p-tabPanel header="Autores">
+      <p-tabPanel header="Autores" leftIcon="pi pi-users">
         <ng-template pTemplate="content">
-          Autores
+          <app-author-catalog></app-author-catalog>
         </ng-template>
       </p-tabPanel>
     </p-tabView>
