@@ -12,4 +12,10 @@ export class BookModel {
   title!: string;
   coverUri?: string;
   authors!: AuthorModel[];
+
+  constructor(props?: Partial<BookModel>) {
+    if (props) {
+      Object.assign(this, props)
+    }
+  }
 }

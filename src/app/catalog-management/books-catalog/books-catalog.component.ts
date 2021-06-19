@@ -3,6 +3,8 @@ import { BooksService } from "../../core/services/books/books.service";
 import { BookModel } from "../../core/models/book.model";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
+import { AuthorFormComponent, AuthorFormConfig } from "../author-catalog/author-form/author-form.component";
+import { BookFormComponent, BookFormConfig } from "./book-form/book-form.component";
 
 @Component({
   selector: 'app-books-catalog',
@@ -14,7 +16,8 @@ export class BooksCatalogComponent implements OnInit {
   selectedItems: BookModel[] = [];
 
   constructor(private booksService: BooksService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.loadBooks().then();
@@ -28,7 +31,17 @@ export class BooksCatalogComponent implements OnInit {
     return item;
   }
 
-  openNew() {
+  openBookModal(id?: number) {
+    const data: BookFormConfig = {
+      bookId: id
+    };
+
+    const ref = this.dialogService.open(BookFormComponent, {
+      header: data.bookId ? 'Editar Livro' : 'Novo Livro',
+      width: '40%',
+      data
+    })
+    ref.onClose.subscribe(() => this.loadBooks().then())
   }
 
   deleteSelectedItems(selectedItems: BookModel[]) {

@@ -16,7 +16,15 @@ export class BooksService {
     return this.http.get<BookModel[]>(`${ environment.apiRoot }/api/books`);
   }
 
-  getBookDetails(bookId: number): Observable<BookModel> {
+  getBook(bookId: number): Observable<BookModel> {
     return this.http.get<BookModel>(`${ environment.apiRoot }/api/books/${ bookId }`);
+  }
+
+  saveAuthor(author: BookModel, isInclude = true) {
+
+  }
+
+  updateAuthor(author: BookModel) {
+    return this.saveAuthor(author, false);
   }
 }

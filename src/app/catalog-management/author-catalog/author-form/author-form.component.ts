@@ -7,7 +7,6 @@ import { ToastrService } from "../../../shared/services/toastr.service";
 
 export interface AuthorFormConfig {
   authorId?: number;
-
 }
 
 @Component({
@@ -61,8 +60,6 @@ export class AuthorFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.authorForm.value)
-
     const author = new AuthorModel({
       id: this._authorData.authorId,
       ...this.authorForm.value

@@ -17,6 +17,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { CalendarModule } from "primeng/calendar";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { FileUploadModule } from "primeng/fileupload";
+import { BookFormComponent } from './books-catalog/book-form/book-form.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FileUploadModule } from "primeng/fileupload";
     CatalogManagementComponent,
     BooksCatalogComponent,
     AuthorCatalogComponent,
-    AuthorFormComponent
+    AuthorFormComponent,
+    BookFormComponent
   ],
   imports: [
     CommonModule,
