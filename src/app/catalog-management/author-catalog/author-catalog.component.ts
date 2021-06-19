@@ -4,6 +4,9 @@ import { AuthorService } from "../../core/services/authors/author.service";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { AuthorFormComponent, AuthorFormConfig } from "./author-form/author-form.component";
+import { ToastrService } from "../../shared/services/toastr.service";
+import { catchError, tap } from "rxjs/operators";
+import { from, of, pipe } from "rxjs";
 
 @Component({
   selector: 'app-author-catalog',
@@ -16,6 +19,7 @@ export class AuthorCatalogComponent implements OnInit {
 
   constructor(private authorsService: AuthorService,
               private confirmationService: ConfirmationService,
+              private toastrService: ToastrService,
               private dialogService: DialogService) { }
 
   ngOnInit(): void {
@@ -49,8 +53,16 @@ export class AuthorCatalogComponent implements OnInit {
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log('Excluir livros selecionados');
-        console.log(selectedItems);
+        selectedItems.map(i => {
+          this.authorsService.removeAuthor(i.id).pipe(
+            tap(
+              () => this.toastrService.success('Registros excluídos com sucesso.'),
+                  () => this.toastrService.error(`Houve um erro ao remover o registro. Tente novamente mais tarde.`)
+            )
+          ).subscribe(() => {
+            this.loadAuthors()
+          })
+        })
       }
     });
   }

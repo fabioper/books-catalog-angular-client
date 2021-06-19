@@ -49,4 +49,8 @@ export class AuthorService {
   async updateAuthor(author: AuthorModel) {
     return this.saveAuthor(author, false);
   }
+
+  removeAuthor(authorId: number) {
+    return this.http.delete(`${environment.apiRoot}/api/authors/${authorId}`);
+  }
 }

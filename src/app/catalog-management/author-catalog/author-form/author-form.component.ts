@@ -60,7 +60,7 @@ export class AuthorFormComponent implements OnInit {
     this.ref.close();
   }
 
-  async save() {
+  save() {
     console.log(this.authorForm.value)
 
     const author = new AuthorModel({
@@ -70,8 +70,8 @@ export class AuthorFormComponent implements OnInit {
 
     try {
       this.isInclude ?
-        await this.authorService.saveAuthor(author) :
-        await this.authorService.updateAuthor(author)
+        this.authorService.saveAuthor(author) :
+        this.authorService.updateAuthor(author);
 
       this.toastrService.success('Autor adicionado com sucesso!');
       this.ref.close();
