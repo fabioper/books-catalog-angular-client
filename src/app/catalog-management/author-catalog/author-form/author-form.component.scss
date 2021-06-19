@@ -15,8 +15,7 @@
 
 ::ng-deep p-fileUpload {
   .p-fileupload .p-fileupload-content .p-fileupload-row {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
+    overflow-wrap: break-word;
   }
 }
 
