@@ -58,7 +58,11 @@ export class BookFormComponent implements OnInit {
     this.booksService.getBook(bookId).subscribe(book => {
       this.bookForm.patchValue({
         ...book,
-        releaseDate: new Date(book.releaseDate)
+        releaseDate: new Date(book.releaseDate),
+        authorsIds: book.authors.map(x => ({
+          value: x.id,
+          label: `${ x.firstName } ${ x.lastName }`
+        }) as SelectItem)
       })
     })
   }
