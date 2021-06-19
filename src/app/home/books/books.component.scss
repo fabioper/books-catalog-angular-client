@@ -11,7 +11,7 @@ h1 {
 
 .books {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
   align-items: flex-end;
   align-content: center;
   gap: 1rem;

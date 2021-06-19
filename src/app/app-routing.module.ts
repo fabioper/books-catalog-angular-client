@@ -5,7 +5,8 @@ import { HomeComponent } from "./home/home.component";
 const routes: Routes = [
   { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: 'books', component: HomeComponent },
-  { path: 'books/:id', component: HomeComponent }
+  { path: 'books/:id', component: HomeComponent },
+  { path: 'catalog', loadChildren: () => import('./catalog-management/catalog-management.module').then(m => m.CatalogManagementModule) }
 ];
 
 @NgModule({
