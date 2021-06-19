@@ -10,7 +10,7 @@ export class BookModel {
   publishers!: PublisherModel[];
   releaseDate!: Date;
   title!: string;
-  authors!: AuthorModel[];
+  authorIds!: AuthorModel[];
   coverUri?: string;
   imageFile?: File;
 

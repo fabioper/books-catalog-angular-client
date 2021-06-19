@@ -8,7 +8,7 @@
         <div class="book-description">
           <span class="book-release-date">{{ book.releaseDate | date: 'YYYY' }}</span>
           <h2 class="book-title">{{ book.title }}</h2>
-          <span class="book-author">{{ book.authors | authors }}</span>
+          <span class="book-author">{{ book.authorIds | authors }}</span>
         </div>
       </a>
     </div>

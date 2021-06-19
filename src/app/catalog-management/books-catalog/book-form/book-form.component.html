@@ -15,6 +15,26 @@
     ></p-calendar>
   </div>
 
+  <div class="app-form-control p-input-filled">
+    <label for="releaseDate" class="app-label">Data de Lançamento</label>
+  </div>
+
+  <div class="app-form-control p-input-filled">
+    <label for="author" class="app-label">Autor</label>
+    <p-autoComplete
+      [suggestions]="authorsOptions"
+      [multiple]="true"
+      field="label"
+      dataKey="value"
+      [minLength]="3"
+      [dropdown]="true"
+      formControlName="authorIds"
+      id="author"
+      (completeMethod)="loadAuthorOptions($event)"
+    ></p-autoComplete>
+
+  </div>
+
   <div class="app-form-control p-input-filled" *ngIf="isInclude">
     <label class="app-label" for="coverUri">Capa</label>
 

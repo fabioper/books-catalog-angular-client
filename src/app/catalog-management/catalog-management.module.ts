@@ -18,6 +18,7 @@ import { CalendarModule } from "primeng/calendar";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { FileUploadModule } from "primeng/fileupload";
 import { BookFormComponent } from './books-catalog/book-form/book-form.component';
+import { AutoCompleteModule } from "primeng/autocomplete";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { BookFormComponent } from './books-catalog/book-form/book-form.component
     InputTextModule,
     CalendarModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    AutoCompleteModule
   ]
 })
 export class CatalogManagementModule { }
