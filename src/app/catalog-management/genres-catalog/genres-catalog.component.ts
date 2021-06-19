@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { GenreModel } from "../../core/models/genre.model";
 import { GenresService } from "../../core/services/genres/genres.service";
 import { DialogService } from "primeng/dynamicdialog";
-import { GenreFormComponent, GenreFormConfig } from "./genre-form/genre-form.component";
 import { tap } from "rxjs/operators";
 import { ConfirmationService } from "primeng/api";
 import { ToastrService } from "../../shared/services/toastr.service";
+import { GenreFormComponent, GenreFormConfig } from "./genre-form/genre-form.component";
 
 @Component({
   selector: 'app-genres-catalog',
