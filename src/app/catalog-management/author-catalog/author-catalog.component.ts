@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorModel } from "../../core/models/author.model";
 import { AuthorService } from "../../core/services/authors/author.service";
 import { ConfirmationService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
+import { AuthorFormComponent } from "./author-form/author-form.component";
 
 @Component({
   selector: 'app-author-catalog',
@@ -13,7 +15,8 @@ export class AuthorCatalogComponent implements OnInit {
   selectedItems: AuthorModel[] = [];
 
   constructor(private authorsService: AuthorService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.loadAuthors().then();
@@ -24,7 +27,13 @@ export class AuthorCatalogComponent implements OnInit {
   }
 
   openNew() {
+    const data = {};
 
+    const ref = this.dialogService.open(AuthorFormComponent, {
+      header: 'Novo Autor',
+      data
+    })
+    ref.onClose.subscribe(() => this.loadAuthors().then())
   }
 
   private async loadAuthors() {

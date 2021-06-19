@@ -12,13 +12,15 @@ import { ToolbarModule } from "primeng/toolbar";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { ConfirmationService } from "primeng/api";
+import { AuthorFormComponent } from './author-catalog/author-form/author-form.component';
 
 
 @NgModule({
   declarations: [
     CatalogManagementComponent,
     BooksCatalogComponent,
-    AuthorCatalogComponent
+    AuthorCatalogComponent,
+    AuthorFormComponent
   ],
   imports: [
     CommonModule,
