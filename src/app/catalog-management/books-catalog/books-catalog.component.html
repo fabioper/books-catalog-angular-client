@@ -44,7 +44,7 @@
       <td>{{ book.description | truncate: 100 }}</td>
       <td>{{ book.releaseDate }}</td>
       <td>{{ book.isbn }}</td>
-      <td>{{ book.authorIds | authors }}</td>
+      <td>{{ book.authors | authors }}</td>
       <td>{{ book.genres | genres }}</td>
     </tr>
   </ng-template>
