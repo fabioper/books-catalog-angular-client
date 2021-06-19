@@ -27,3 +27,21 @@ body {
   margin: 0 auto;
 }
 
+.app-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.app-input {
+  width: 100%;
+}
+
+.app-form-control {
+  margin: 1rem 0;
+}
+
+textarea.app-input {
+  min-height: 10rem;
+}
+

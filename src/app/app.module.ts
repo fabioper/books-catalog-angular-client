@@ -17,6 +17,7 @@ import { ToastModule } from "primeng/toast";
 import { PanelModule } from "primeng/panel";
 import { FieldsetModule } from "primeng/fieldset";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -48,7 +49,9 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     ToastModule,
     PanelModule,
     FieldsetModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DialogService,

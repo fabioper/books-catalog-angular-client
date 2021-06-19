@@ -11,8 +11,12 @@ import { SharedModule } from "../shared/shared.module";
 import { ToolbarModule } from "primeng/toolbar";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
-import { ConfirmationService } from "primeng/api";
 import { AuthorFormComponent } from './author-catalog/author-form/author-form.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { InputTextModule } from "primeng/inputtext";
+import { CalendarModule } from "primeng/calendar";
+import { InputTextareaModule } from "primeng/inputtextarea";
+import { FileUploadModule } from "primeng/fileupload";
 
 
 @NgModule({
@@ -30,7 +34,12 @@ import { AuthorFormComponent } from './author-catalog/author-form/author-form.co
     SharedModule,
     ToolbarModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    CalendarModule,
+    InputTextareaModule,
+    FileUploadModule
   ]
 })
 export class CatalogManagementModule { }

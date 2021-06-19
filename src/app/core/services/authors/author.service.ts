@@ -14,4 +14,12 @@ export class AuthorService {
   getAuthors(): Observable<AuthorModel[]> {
     return this.http.get<AuthorModel[]>(`${environment.apiRoot}/api/authors`);
   }
+
+  private uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', file.name);
+
+    this.http.post(`${environment.apiRoot}/api/authors/upload-image`, formData)
+  }
 }
