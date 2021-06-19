@@ -9,7 +9,7 @@
           label="Remover"
           icon="pi pi-trash"
           class="p-button-rounded p-button-danger p-button-icon-only"
-          (click)="deleteSelectedItems()" [disabled]="!selectedItems || !selectedItems.length">
+          (click)="deleteSelectedItems(selectedItems)" [disabled]="!selectedItems || !selectedItems.length">
   </button>
 </p-toolbar>
 

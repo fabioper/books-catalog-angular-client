@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from "../../core/services/books/books.service";
 import { BookModel } from "../../core/models/book.model";
 import { ConfirmationService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 
 @Component({
   selector: 'app-books-catalog',
@@ -30,14 +31,14 @@ export class BooksCatalogComponent implements OnInit {
   openNew() {
   }
 
-  deleteSelectedItems() {
+  deleteSelectedItems(selectedItems: BookModel[]) {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir os livros selecionados?',
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         console.log('Excluir livros selecionados');
-        console.log(this.selectedItems);
+        console.log(selectedItems);
       }
     });
   }

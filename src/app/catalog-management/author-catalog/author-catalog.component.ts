@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorModel } from "../../core/models/author.model";
+import { AuthorService } from "../../core/services/authors/author.service";
+import { ConfirmationService } from "primeng/api";
 
 @Component({
   selector: 'app-author-catalog',
@@ -6,10 +9,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author-catalog.component.scss']
 })
 export class AuthorCatalogComponent implements OnInit {
+  authors: AuthorModel[] = [];
+  selectedItems: AuthorModel[] = [];
 
-  constructor() { }
+  constructor(private authorsService: AuthorService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.loadAuthors().then();
   }
 
+  getData(item: any): AuthorModel {
+    return item;
+  }
+
+  openNew() {
+
+  }
+
+  private async loadAuthors() {
+    this.authors = await this.authorsService.getAuthors().toPromise();
+  }
+
+  deleteSelectedItems(selectedItems: AuthorModel[]) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir os autores selecionados e seus respectivos livros?',
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log('Excluir livros selecionados');
+        console.log(selectedItems);
+      }
+    });
+  }
 }
