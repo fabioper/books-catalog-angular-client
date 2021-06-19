@@ -29,12 +29,24 @@ export class AuthorService {
     return `${ file.name }.${ file.name.split('.').pop() }`;
   }
 
-  async saveAuthor(data: AuthorModel) {
+  async saveAuthor(data: AuthorModel, isInclude = true) {
     if (data.imageFile) {
       const { uri } = await this.uploadImage(data.imageFile).toPromise()
       data.imageUri = uri;
     }
 
-    return this.http.post(`${environment.apiRoot}/api/authors`, data).toPromise();
+    let request = isInclude ?
+      this.http.post(`${ environment.apiRoot }/api/authors`, data) :
+      this.http.put(`${ environment.apiRoot }/api/authors`, data);
+
+    return request.toPromise();
+  }
+
+  getAuthor(authorId: number): Observable<AuthorModel> {
+    return this.http.get<AuthorModel>(`${environment.apiRoot}/api/authors/${authorId}`);
+  }
+
+  async updateAuthor(author: AuthorModel) {
+    return this.saveAuthor(author, false);
   }
 }

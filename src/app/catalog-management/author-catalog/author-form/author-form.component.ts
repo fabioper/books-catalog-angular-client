@@ -19,6 +19,7 @@ export class AuthorFormComponent implements OnInit {
   private readonly _authorData!: AuthorFormConfig;
 
   authorForm!: FormGroup;
+  isInclude = false;
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
@@ -26,6 +27,7 @@ export class AuthorFormComponent implements OnInit {
               private toastrService: ToastrService,
               private authorService: AuthorService) {
     this._authorData = config.data;
+    this.isInclude = !this._authorData.authorId;
   }
 
   ngOnInit(): void {
@@ -36,7 +38,12 @@ export class AuthorFormComponent implements OnInit {
   }
 
   loadAuthorData(authorId: number) {
-
+    this.authorService.getAuthor(authorId).subscribe(author => {
+      this.authorForm.patchValue({
+        ...author,
+        birthDate: new Date(author.birthDate)
+      })
+    })
   }
 
   initForm() {
@@ -50,18 +57,22 @@ export class AuthorFormComponent implements OnInit {
   }
 
   cancel() {
-
+    this.ref.close();
   }
 
   async save() {
     console.log(this.authorForm.value)
+
     const author = new AuthorModel({
       id: this._authorData.authorId,
       ...this.authorForm.value
     });
 
     try {
-      await this.authorService.saveAuthor(author)
+      this.isInclude ?
+        await this.authorService.saveAuthor(author) :
+        await this.authorService.updateAuthor(author)
+
       this.toastrService.success('Autor adicionado com sucesso!');
       this.ref.close();
     } catch(e) {

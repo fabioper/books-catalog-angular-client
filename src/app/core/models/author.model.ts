@@ -3,7 +3,7 @@ export class AuthorModel {
   firstName!: string;
   lastName!: string;
   biography!: string;
-  birthDate!: Date;
+  birthDate!: Date | string;
   imageUri?: string;
   imageFile?: File;
 

@@ -3,7 +3,7 @@ import { AuthorModel } from "../../core/models/author.model";
 import { AuthorService } from "../../core/services/authors/author.service";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
-import { AuthorFormComponent } from "./author-form/author-form.component";
+import { AuthorFormComponent, AuthorFormConfig } from "./author-form/author-form.component";
 
 @Component({
   selector: 'app-author-catalog',
@@ -26,8 +26,10 @@ export class AuthorCatalogComponent implements OnInit {
     return item;
   }
 
-  openNew() {
-    const data = {};
+  openAuthorModal(id?: number) {
+    const data: AuthorFormConfig = {
+      authorId: id
+    };
 
     const ref = this.dialogService.open(AuthorFormComponent, {
       header: 'Novo Autor',
