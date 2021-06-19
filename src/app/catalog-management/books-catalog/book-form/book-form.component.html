@@ -34,7 +34,7 @@
   </div>
 
   <div class="app-form-control-buttons">
-    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel()"></button>
-    <button pButton label="Salvar" class="p-button-success" [disabled]="bookForm.invalid" (click)="save()"></button>
+    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel($event)"></button>
+    <button pButton label="Salvar" class="p-button-success" [loading]="isLoading" [disabled]="bookForm.invalid" type="submit"></button>
   </div>
 </form>

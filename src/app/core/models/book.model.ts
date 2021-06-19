@@ -10,8 +10,9 @@ export class BookModel {
   publishers!: PublisherModel[];
   releaseDate!: Date;
   title!: string;
-  coverUri?: string;
   authors!: AuthorModel[];
+  coverUri?: string;
+  imageFile?: File;
 
   constructor(props?: Partial<BookModel>) {
     if (props) {

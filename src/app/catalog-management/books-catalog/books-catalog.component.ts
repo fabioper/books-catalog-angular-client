@@ -3,7 +3,6 @@ import { BooksService } from "../../core/services/books/books.service";
 import { BookModel } from "../../core/models/book.model";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
-import { AuthorFormComponent, AuthorFormConfig } from "../author-catalog/author-form/author-form.component";
 import { BookFormComponent, BookFormConfig } from "./book-form/book-form.component";
 
 @Component({
@@ -20,11 +19,13 @@ export class BooksCatalogComponent implements OnInit {
               private dialogService: DialogService) { }
 
   ngOnInit(): void {
-    this.loadBooks().then();
+    this.loadBooks();
   }
 
-  private async loadBooks() {
-    this.books = await this.booksService.getBooks().toPromise();
+  loadBooks() {
+    this.booksService.getBooks().subscribe(books => {
+      this.books = books;
+    });
   }
 
   getData(item: any): BookModel {
@@ -41,7 +42,7 @@ export class BooksCatalogComponent implements OnInit {
       width: '40%',
       data
     })
-    ref.onClose.subscribe(() => this.loadBooks().then())
+    ref.onClose.subscribe(() => this.loadBooks())
   }
 
   deleteSelectedItems(selectedItems: BookModel[]) {

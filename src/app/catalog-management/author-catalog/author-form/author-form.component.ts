@@ -4,6 +4,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { AuthorService } from "../../../core/services/authors/author.service";
 import { AuthorModel } from "../../../core/models/author.model";
 import { ToastrService } from "../../../shared/services/toastr.service";
+import { tap } from "rxjs/operators";
 
 export interface AuthorFormConfig {
   authorId?: number;
@@ -19,6 +20,7 @@ export class AuthorFormComponent implements OnInit {
 
   authorForm!: FormGroup;
   isInclude = false;
+  isLoading = false;
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
@@ -55,11 +57,14 @@ export class AuthorFormComponent implements OnInit {
     });
   }
 
-  cancel() {
+  cancel($event: MouseEvent) {
+    $event.preventDefault();
     this.ref.close();
   }
 
-  save() {
+  async save() {
+    this.isLoading = true;
+
     const author = new AuthorModel({
       id: this._authorData.authorId,
       ...this.authorForm.value
@@ -67,14 +72,16 @@ export class AuthorFormComponent implements OnInit {
 
     try {
       this.isInclude ?
-        this.authorService.saveAuthor(author) :
-        this.authorService.updateAuthor(author);
+        await this.authorService.saveAuthor(author) :
+        await this.authorService.updateAuthor(author);
 
       this.toastrService.success('Autor adicionado com sucesso!');
       this.ref.close();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       this.toastrService.error('Ocorreu um erro ao salvar este autor. Tente novamente mais tarde.');
+    } finally {
+      this.isLoading = false
     }
   }
 

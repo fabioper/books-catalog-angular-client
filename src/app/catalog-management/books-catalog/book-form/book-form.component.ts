@@ -21,6 +21,7 @@ export class BookFormComponent implements OnInit {
 
   bookForm!: FormGroup;
   isInclude = false;
+  isLoading = false;
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
@@ -57,26 +58,31 @@ export class BookFormComponent implements OnInit {
     })
   }
 
-  cancel() {
+  cancel($event: MouseEvent) {
+    $event.preventDefault();
     this.ref.close();
   }
 
-  save() {
-    const author = new BookModel({
+  async save() {
+    this.isLoading = true;
+
+    const book = new BookModel({
       id: this._bookData.bookId,
       ...this.bookForm.value
     });
 
     try {
       this.isInclude ?
-        this.booksService.saveAuthor(author) :
-        this.booksService.updateAuthor(author);
+        await this.booksService.saveBook(book) :
+        await this.booksService.updateBook(book);
 
-      this.toastrService.success('Livro adicionado com sucesso!');
+      this.toastrService.success('Livro salvo com sucesso!');
       this.ref.close();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       this.toastrService.error('Ocorreu um erro ao salvar este livro. Tente novamente mais tarde.');
+    } finally {
+      this.isLoading = false;
     }
   }
 

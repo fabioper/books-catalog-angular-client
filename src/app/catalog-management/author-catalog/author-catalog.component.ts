@@ -36,7 +36,7 @@ export class AuthorCatalogComponent implements OnInit {
     };
 
     const ref = this.dialogService.open(AuthorFormComponent, {
-      header: 'Novo Autor',
+      header: data.authorId ? 'Editar Autor' : 'Novo Autor',
       width: '40%',
       data
     })

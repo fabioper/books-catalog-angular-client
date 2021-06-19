@@ -1,7 +1,7 @@
 <form [formGroup]="authorForm" (ngSubmit)="save()">
   <div class="app-form-control p-input-filled">
     <label for="firstName" class="app-label">Nome</label>
-    <input type="text" pInputText formControlName="title" id="firstName" class="app-input"/>
+    <input type="text" pInputText formControlName="firstName" id="firstName" class="app-input"/>
   </div>
 
   <div class="app-form-control p-input-filled">
@@ -39,7 +39,8 @@
   </div>
 
   <div class="app-form-control-buttons">
-    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel()"></button>
-    <button pButton label="Salvar" class="p-button-success" [disabled]="authorForm.invalid" (click)="save()"></button>
+    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel($event)"></button>
+    <button pButton label="Salvar" class="p-button-success" [loading]="isLoading" [disabled]="authorForm.invalid"
+            type="submit"></button>
   </div>
 </form>
