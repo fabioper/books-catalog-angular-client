@@ -19,6 +19,8 @@ import { InputTextareaModule } from "primeng/inputtextarea";
 import { FileUploadModule } from "primeng/fileupload";
 import { BookFormComponent } from './books-catalog/book-form/book-form.component';
 import { AutoCompleteModule } from "primeng/autocomplete";
+import { GenresCatalogComponent } from './genres-catalog/genres-catalog.component';
+import { GenreFormComponent } from './genres-catalog/genre-form/genre-form.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     BooksCatalogComponent,
     AuthorCatalogComponent,
     AuthorFormComponent,
-    BookFormComponent
+    BookFormComponent,
+    GenresCatalogComponent,
+    GenreFormComponent
   ],
   imports: [
     CommonModule,

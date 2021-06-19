@@ -5,8 +5,7 @@ import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { AuthorFormComponent, AuthorFormConfig } from "./author-form/author-form.component";
 import { ToastrService } from "../../shared/services/toastr.service";
-import { catchError, tap } from "rxjs/operators";
-import { from, of, pipe } from "rxjs";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: 'app-author-catalog',
