@@ -32,8 +32,8 @@ export class BookDetailComponent implements OnInit {
   private async loadBookData(bookId: number) {
     try {
       this.book = await this.booksService.getBook(bookId).toPromise();
-      this.config.showHeader = true;
-      this.config.header = this.book.title;
+      /*this.config.showHeader = true;
+      this.config.header = this.book.title;*/
     } catch (e) {
       if (e.status !== 404) {
         this.toastrService.error('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde');
