@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { PublisherModel } from "../models/publisher.model";
+
+export interface PublishersFilter {
+  name?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +15,15 @@ export class PublishersService {
 
   constructor(private http: HttpClient) { }
 
-  getPublishers() {
-    return this.http.get<PublisherModel[]>(this.endpoint);
+  getPublishers(filter?: PublishersFilter) {
+    const params = PublishersService.getParams(filter);
+    return this.http.get<PublisherModel[]>(this.endpoint, { params });
   }
+
+  private static getParams(obj?: any) {
+    return new HttpParams({ fromObject: obj })
+  }
+
 
   removePublisher(id: number) {
     return this.http.delete(this.endpoint + '/' + id);

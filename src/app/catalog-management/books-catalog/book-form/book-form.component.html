@@ -35,6 +35,36 @@
 
   </div>
 
+  <div class="app-form-control p-input-filled">
+    <label for="genre" class="app-label">Gêneros</label>
+    <p-autoComplete
+      [suggestions]="genreOptions"
+      [multiple]="true"
+      field="label"
+      dataKey="value"
+      [minLength]="3"
+      [dropdown]="true"
+      formControlName="genreIds"
+      id="genre"
+      (completeMethod)="loadGenreOptions($event)"
+    ></p-autoComplete>
+  </div>
+
+  <div class="app-form-control p-input-filled">
+    <label for="publisher" class="app-label">Editoras</label>
+    <p-autoComplete
+      [suggestions]="publishersOptions"
+      [multiple]="true"
+      field="label"
+      dataKey="value"
+      [minLength]="3"
+      [dropdown]="true"
+      formControlName="publisherIds"
+      id="publisher"
+      (completeMethod)="loadPublishersOptions($event)"
+    ></p-autoComplete>
+  </div>
+
   <div class="app-form-control p-input-filled" *ngIf="isInclude">
     <label class="app-label" for="coverUri">Capa</label>
 

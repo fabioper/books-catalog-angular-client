@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { GenreModel } from "../../models/genre.model";
 import { environment } from "../../../../environments/environment";
+
+export interface GenreFilter {
+  name?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +15,13 @@ export class GenresService {
 
   constructor(private http: HttpClient) { }
 
-  getGenres() {
-    return this.http.get<GenreModel[]>(this.endpoint);
+  getGenres(filter?: GenreFilter) {
+    const params = GenresService.getParams(filter);
+    return this.http.get<GenreModel[]>(this.endpoint, { params });
+  }
+
+  private static getParams(obj?: any) {
+    return new HttpParams({ fromObject: obj })
   }
 
   getGenre(genreId: number) {
