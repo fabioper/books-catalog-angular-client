@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {OidcSecurityService} from "angular-auth-oidc-client";
-import {environment} from "../../../environments/environment";
-import {Subject} from "rxjs";
+import { Injectable } from '@angular/core';
+import { OidcSecurityService } from "angular-auth-oidc-client";
+import { environment } from "../../../environments/environment";
+import { Subject } from "rxjs";
 
 interface User {
   email: string;
@@ -42,6 +42,10 @@ export class AuthService {
 
   get loggedUser() {
     return this._loggedUser;
+  }
+
+  get token() {
+    return this.oidcSecurityService.getToken();
   }
 
   signup() {

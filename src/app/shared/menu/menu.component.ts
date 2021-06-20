@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Catálogo',
         icon: 'pi pi-fw pi-book',
-        visible: !this.authService.isLogged,
+        visible: this.authService.isLogged,
         styleClass: 'p-button-danger',
         routerLink: 'catalog'
       },
