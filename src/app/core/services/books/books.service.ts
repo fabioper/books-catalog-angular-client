@@ -10,20 +10,20 @@ type ImageUploadResponse = { uri: string, name: string };
   providedIn: 'root'
 })
 export class BooksService {
+  private endpoint = `${environment.apiRoot}/api/books`
 
   constructor(private http: HttpClient) {
   }
 
   getBooks(): Observable<BookModel[]> {
-    return this.http.get<BookModel[]>(`${ environment.apiRoot }/api/books`);
+    return this.http.get<BookModel[]>(this.endpoint);
   }
 
   getBook(bookId: number): Observable<BookModel> {
-    return this.http.get<BookModel>(`${ environment.apiRoot }/api/books/${ bookId }`);
+    return this.http.get<BookModel>(`${ this.endpoint }/${ bookId }`);
   }
 
   async saveBook(data: BookModel, isInclude = true) {
-    const endpoint = `${ environment.apiRoot }/api/books`;
 
     if (data.imageFile) {
       const { uri } = await this.uploadImage(data.imageFile).toPromise()
@@ -31,8 +31,8 @@ export class BooksService {
     }
 
     return isInclude ?
-      this.http.post(endpoint, data).toPromise() :
-      this.http.put(endpoint, data).toPromise();
+      this.http.post(this.endpoint, data).toPromise() :
+      this.http.put(this.endpoint, data).toPromise();
   }
 
   updateBook(book: BookModel) {
@@ -44,10 +44,14 @@ export class BooksService {
     formData.append('data', file);
     formData.append('name', BooksService.getFileName(file));
 
-    return this.http.post<ImageUploadResponse>(`${environment.apiRoot}/api/books/upload-cover`, formData)
+    return this.http.post<ImageUploadResponse>(`${this.endpoint}/upload-cover`, formData)
   }
 
   private static getFileName(file: File) {
     return `${ file.name }.${ file.name.split('.').pop() }`;
+  }
+
+  removeBook(bookId: number) {
+    return this.http.delete(this.endpoint + '/' + bookId);
   }
 }

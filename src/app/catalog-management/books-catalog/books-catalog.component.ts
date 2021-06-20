@@ -4,6 +4,8 @@ import { BookModel } from "../../core/models/book.model";
 import { ConfirmationService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 import { BookFormComponent, BookFormConfig } from "./book-form/book-form.component";
+import { tap } from "rxjs/operators";
+import { ToastrService } from "../../shared/services/toastr.service";
 
 @Component({
   selector: 'app-books-catalog',
@@ -16,6 +18,7 @@ export class BooksCatalogComponent implements OnInit {
 
   constructor(private booksService: BooksService,
               private confirmationService: ConfirmationService,
+              private toastrService: ToastrService,
               private dialogService: DialogService) { }
 
   ngOnInit(): void {
@@ -51,8 +54,16 @@ export class BooksCatalogComponent implements OnInit {
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log('Excluir livros selecionados');
-        console.log(selectedItems);
+        selectedItems.map(i => {
+          this.booksService.removeBook(i.id!).pipe(
+            tap(
+              () => this.toastrService.success('Registros excluídos com sucesso.'),
+              () => this.toastrService.error(`Houve um erro ao remover o registro. Tente novamente mais tarde.`)
+            )
+          ).subscribe(() => {
+            this.loadBooks()
+          })
+        })
       }
     });
   }

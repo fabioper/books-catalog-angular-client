@@ -69,7 +69,7 @@ export class BookFormComponent implements OnInit {
         releaseDate: new Date(book.releaseDate),
         genreIds: book.genres.map(x => ({ value: x.id, label: x.name }) as SelectItem),
         publisherIds: book.publishers.map(x => ({ value: x.id, label: x.name }) as SelectItem),
-        authorsIds: book.authors.map(x => ({ value: x.id, label: `${ x.firstName } ${ x.lastName }` }) as SelectItem)
+        authorsIds: book.authors.map(x => ({ value: x.id, label: x.name }) as SelectItem)
       })
     })
   }
@@ -116,7 +116,7 @@ export class BookFormComponent implements OnInit {
       this.authorsOptions = result.map(a => {
         return ({
           value: a.id,
-          label: a.firstName + ' ' + a.lastName
+          label: a.name
         }) as SelectItem;
       })
     })
