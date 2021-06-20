@@ -39,14 +39,14 @@ export class GenresCatalogComponent implements OnInit {
 
   deleteSelectedItems(selectedItems: GenreModel[]) {
     this.confirmationService.confirm({
-      message: 'Tem certeza que deseja excluir os gêneros selecionados e seus respectivos livros?',
+      message: 'Tem certeza que deseja excluir os gêneros selecionados?',
       header: 'Confirmar',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         selectedItems.map(i => {
           this.genresService.removeGenre(i.id!).pipe(
             tap(
-              () => this.toastrService.success('Registros excluídos com sucesso.'),
+              () => this.toastrService.success('Registro excluído com sucesso.'),
               () => this.toastrService.error(`Houve um erro ao remover o registro. Tente novamente mais tarde.`)
             )
           ).subscribe(() => {
