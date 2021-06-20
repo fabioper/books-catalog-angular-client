@@ -3,10 +3,68 @@
     <img [src]="book?.coverUri || defaultCoverUri" alt="">
   </figure>
 
-  <div class="details">
+  <div class="book-info">
     <h1>{{ book?.title }}</h1>
 
-    <h2>Descrição:</h2>
-    <p>{{ book?.description }}</p>
+    <div>
+      <h2>Descrição:</h2>
+      <p>{{ book?.description }}</p>
+    </div>
+
+    <div>
+      <h2>Lançamento:</h2>
+      <p>{{ book?.releaseDate | date: 'dd/MM/YYYY' }}</p>
+    </div>
+
+    <div>
+      <h2>Autor:</h2>
+      <p>{{ book?.authors | authors }}</p>
+    </div>
+
+    <div>
+      <h2>Gênero:</h2>
+      <p>{{ book?.genres | genres }}</p>
+    </div>
+
+    <div>
+      <h2>Editoras:</h2>
+      <p>{{ book?.publishers | publishers }}</p>
+    </div>
+
+    <div class="reviews">
+      <p-divider>Avaliações</p-divider>
+
+      <div class="post-review" *ngIf="authService.isLogged">
+        <form [formGroup]="reviewForm" (ngSubmit)="postReview()">
+          <div class="app-form-control p-input-filled">
+            <label for="score" class="app-label">Nota:</label>
+            <p-rating id="score" formControlName="score"></p-rating>
+          </div>
+          <div class="app-form-control p-input-filled">
+            <label for="comment" class="app-label">Comentário</label>
+            <textarea pInputTextarea id="comment" [autoResize]="true" formControlName="comment" class="app-input"></textarea>
+          </div>
+
+          <button type="submit" pButton label="Limpar" icon="pi pi-pen" class="p-button-text" (click)="clear($event)"></button>
+          <button type="submit" pButton [loading]="isLoading" label="Publicar" icon="pi pi-pen" class="p-button-rounded"></button>
+        </form>
+      </div>
+
+      <div class="reviews-listing">
+        <div class="review" *ngFor="let review of reviews">
+          <div class="review-comment">
+            {{ review.comment }}
+          </div>
+          <div class="review-score">
+            {{ review.score }}
+          </div>
+          <div class="review-user">
+            {{ review.userId }}
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+

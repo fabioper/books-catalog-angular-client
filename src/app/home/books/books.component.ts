@@ -45,6 +45,8 @@ export class BooksComponent implements OnInit {
     const ref = this.dialogService.open(BookDetailComponent, {
       showHeader: false,
       width: '70%',
+      closable: true,
+      closeOnEscape: true,
       dismissableMask: true,
       data
     })

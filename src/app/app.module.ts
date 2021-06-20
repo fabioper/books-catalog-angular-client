@@ -20,6 +20,9 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./shared/interceptor/token.interceptor";
+import { DividerModule } from "primeng/divider";
+import { RatingModule } from "primeng/rating";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -53,7 +56,10 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
     FieldsetModule,
     ConfirmDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DividerModule,
+    RatingModule,
+    InputTextareaModule
   ],
   providers: [
     DialogService,
