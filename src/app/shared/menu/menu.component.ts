@@ -40,6 +40,13 @@ export class MenuComponent implements OnInit {
         routerLink: 'catalog'
       },
       {
+        label: 'Minhas Coleções',
+        icon: 'pi pi-fw pi-book',
+        visible: this.authService.isLogged,
+        styleClass: 'p-button-danger',
+        routerLink: 'collections'
+      },
+      {
         label: 'Logoff',
         icon: 'pi pi-fw pi-sign-out',
         visible: this.authService.isLogged,
