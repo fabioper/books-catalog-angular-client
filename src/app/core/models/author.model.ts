@@ -1,7 +1,6 @@
 export class AuthorModel {
   id!: number;
-  firstName!: string;
-  lastName!: string;
+  name!: string;
   biography!: string;
   birthDate!: Date | string;
   imageUri?: string;

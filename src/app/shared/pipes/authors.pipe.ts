@@ -7,7 +7,7 @@ import { AuthorModel } from "../../core/models/author.model";
 export class AuthorsPipe implements PipeTransform {
 
   transform(authors: AuthorModel[] | undefined, ...args: unknown[]): unknown {
-    const authorNames = authors?.map(author => `${ author.firstName } ${ author.lastName }`);
+    const authorNames = authors?.map(author => author.name);
     return authorNames?.join(', ');
   }
 

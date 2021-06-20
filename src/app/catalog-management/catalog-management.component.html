@@ -1,5 +1,5 @@
 <main>
-  <div class="container">
+  <section class="container">
     <p-tabView>
       <p-tabPanel header="Livros" leftIcon="pi pi-book">
         <ng-template pTemplate="content">
@@ -12,6 +12,18 @@
           <app-author-catalog></app-author-catalog>
         </ng-template>
       </p-tabPanel>
+
+      <p-tabPanel header="Gêneros" leftIcon="pi pi-users">
+        <ng-template pTemplate="content">
+          <app-genres-catalog></app-genres-catalog>
+        </ng-template>
+      </p-tabPanel>
+
+      <p-tabPanel header="Editoras" leftIcon="pi pi-users">
+        <ng-template pTemplate="content">
+          <app-publishers-catalog></app-publishers-catalog>
+        </ng-template>
+      </p-tabPanel>
     </p-tabView>
-  </div>
+  </section>
 </main>

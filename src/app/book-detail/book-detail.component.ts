@@ -31,7 +31,7 @@ export class BookDetailComponent implements OnInit {
 
   private async loadBookData(bookId: number) {
     try {
-      this.book = await this.booksService.getBookDetails(bookId).toPromise();
+      this.book = await this.booksService.getBook(bookId).toPromise();
       this.config.showHeader = true;
       this.config.header = this.book.title;
     } catch (e) {

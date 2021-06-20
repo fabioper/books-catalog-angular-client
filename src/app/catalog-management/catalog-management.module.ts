@@ -17,6 +17,12 @@ import { InputTextModule } from "primeng/inputtext";
 import { CalendarModule } from "primeng/calendar";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { FileUploadModule } from "primeng/fileupload";
+import { BookFormComponent } from './books-catalog/book-form/book-form.component';
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { GenresCatalogComponent } from './genres-catalog/genres-catalog.component';
+import { GenreFormComponent } from './genres-catalog/genre-form/genre-form.component';
+import { PublishersCatalogComponent } from './publishers-catalog/publishers-catalog.component';
+import { PublisherFormComponent } from './publishers-catalog/publisher-form/publisher-form.component';
 
 
 @NgModule({
@@ -24,7 +30,12 @@ import { FileUploadModule } from "primeng/fileupload";
     CatalogManagementComponent,
     BooksCatalogComponent,
     AuthorCatalogComponent,
-    AuthorFormComponent
+    AuthorFormComponent,
+    BookFormComponent,
+    GenresCatalogComponent,
+    GenreFormComponent,
+    PublishersCatalogComponent,
+    PublisherFormComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +50,8 @@ import { FileUploadModule } from "primeng/fileupload";
     InputTextModule,
     CalendarModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    AutoCompleteModule
   ]
 })
 export class CatalogManagementModule { }
