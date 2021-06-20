@@ -1,7 +1,8 @@
 section {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: auto 50%;
   gap: 2rem;
+  padding: 0;
 
   @media (max-width: 1000px) {
     grid-template-columns: 1fr;
@@ -9,27 +10,22 @@ section {
 }
 
 img {
-  height: 100%;
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   max-height: 680px;
+  display: block;
 
   @media (max-width: 1000px) {
     max-height: 250px;
   }
 }
 
-h2 {
-  font-size: 1rem;
+h1 {
+  font-size: 2rem;
+  padding: 2rem 0;
 }
 
-:host ::ng-deep {
-  p-fieldset {
-    margin: 1rem 0;
-    display: block;
-
-    .p-fieldset-legend {
-      border: none;
-    }
-  }
+h2 {
+  font-size: 1rem;
 }

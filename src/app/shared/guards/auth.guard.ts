@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const { isLogged } = this.authService;
     if (!isLogged) {
-      this.toastrService.error('Você precisa estar logando para acessar esta área.')
+      this.toastrService.error('Você precisa estar logado para acessar esta área.')
       this.router.navigate(['/']);
       return false;
     }
