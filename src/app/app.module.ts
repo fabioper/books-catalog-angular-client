@@ -18,6 +18,8 @@ import { PanelModule } from "primeng/panel";
 import { FieldsetModule } from "primeng/fieldset";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { TokenInterceptor } from "./shared/interceptor/token.interceptor";
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -63,6 +65,11 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       useFactory: configureAuth,
       deps: [OidcConfigService],
       multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
