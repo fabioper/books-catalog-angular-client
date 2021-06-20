@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="app-form-control p-input-filled">
+    <label for="name" class="app-label">Nome</label>
+    <input type="text" pInputText formControlName="name" id="name" class="app-input"/>
+  </div>
+
+  <div class="app-form-control-buttons">
+    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel($event)"></button>
+    <button pButton label="Salvar" class="p-button-success" [loading]="isLoading" [disabled]="form.invalid"
+            type="submit"></button>
+  </div>
+</form>

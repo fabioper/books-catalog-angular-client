@@ -21,6 +21,8 @@ import { BookFormComponent } from './books-catalog/book-form/book-form.component
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { GenresCatalogComponent } from './genres-catalog/genres-catalog.component';
 import { GenreFormComponent } from './genres-catalog/genre-form/genre-form.component';
+import { PublishersCatalogComponent } from './publishers-catalog/publishers-catalog.component';
+import { PublisherFormComponent } from './publishers-catalog/publisher-form/publisher-form.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { GenreFormComponent } from './genres-catalog/genre-form/genre-form.compo
     AuthorFormComponent,
     BookFormComponent,
     GenresCatalogComponent,
-    GenreFormComponent
+    GenreFormComponent,
+    PublishersCatalogComponent,
+    PublisherFormComponent
   ],
   imports: [
     CommonModule,
