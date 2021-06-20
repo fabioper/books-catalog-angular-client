@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import "variables";
+
+*, :after, :before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: var(--vl-color-bg);
+  color: var(--vl-color-text);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.app-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+
+.app-input {
+  width: 100%;
+}
+
+.app-form-control {
+  margin: 1rem 0;
+}
+
+textarea.app-input {
+  min-height: 10rem;
+}
+
+section {
+  padding: 2rem 0;
+  color: #1a1a1a;
+}

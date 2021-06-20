@@ -1,0 +1,45 @@
+::ng-deep {
+  p-calendar .p-calendar {
+    width: 100%;
+  }
+
+  p-dynamicDialog {
+    .p-dialog-mask {
+      backdrop-filter: blur(5px);
+    }
+
+    .p-dialog-content {
+      height: 100%;
+    }
+  }
+
+  p-fileUpload {
+    .p-fileupload .p-fileupload-content .p-fileupload-row {
+      overflow-wrap: break-word;
+    }
+  }
+
+  p-toolbar {
+    .p-toolbar {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .app-form-control-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  p-autoComplete .p-autocomplete {
+    width: 100%;
+
+    .p-autocomplete-multiple-container {
+      width: 100%;
+    }
+  }
+}

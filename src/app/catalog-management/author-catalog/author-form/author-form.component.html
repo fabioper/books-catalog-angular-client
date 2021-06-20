@@ -1,0 +1,41 @@
+<form [formGroup]="authorForm" (ngSubmit)="save()">
+  <div class="app-form-control p-input-filled">
+    <label for="name" class="app-label">Nome</label>
+    <input type="text" pInputText formControlName="name" id="name" class="app-input"/>
+  </div>
+
+  <div class="app-form-control p-input-filled">
+    <label for="birthDate" class="app-label">Data de Nascimento</label>
+    <p-calendar formControlName="birthDate"
+                id="birthDate"
+                icon="pi pi-calendar"
+                [showIcon]="true"
+                dateFormat="dd/mm/yy"
+                class="app-input"
+    ></p-calendar>
+  </div>
+
+  <div class="app-form-control p-input-filled" *ngIf="isInclude">
+    <label class="app-label" for="imageUri">Imagem do Autor</label>
+
+    <p-fileUpload name="myfile[]"
+                  [customUpload]="true"
+                  (uploadHandler)="fileUpload($event)"
+                  id="imageUri"
+                  [auto]="true"
+                  accept="image/*"
+                  chooseLabel="Escolher imagem"
+    ></p-fileUpload>
+  </div>
+
+  <div class="app-form-control p-input-filled">
+    <label for="biography" class="app-label">Biografia</label>
+    <textarea pInputTextarea formControlName="biography" id="biography" class="app-input"></textarea>
+  </div>
+
+  <div class="app-form-control-buttons">
+    <button pButton label="Cancelar" class="p-button-plain p-button-text" (click)="cancel($event)"></button>
+    <button pButton label="Salvar" class="p-button-success" [loading]="isLoading" [disabled]="authorForm.invalid"
+            type="submit"></button>
+  </div>
+</form>

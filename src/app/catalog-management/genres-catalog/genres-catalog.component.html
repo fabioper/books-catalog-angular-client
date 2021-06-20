@@ -1,0 +1,43 @@
+<p-toolbar>
+  <button pButton pRipple
+          label="Novo"
+          icon="pi pi-plus"
+          class="p-button-rounded p-button-success"
+          (click)="openGenreModal()">
+  </button>
+  <button pButton pRipple
+          label="Remover"
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-danger p-button-icon-only"
+          (click)="deleteSelectedItems(selectedItems)" [disabled]="!selectedItems || !selectedItems.length">
+  </button>
+</p-toolbar>
+
+<p-table [value]="genres"
+         [paginator]="true"
+         [autoLayout]="true"
+         [rows]="10"
+         [(selection)]="selectedItems"
+         styleClass="p-datatable-striped"
+         [showCurrentPageReport]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 40px">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th style="width: 100px">ID</th>
+      <th>Nome</th>
+      <th style="width: 40px"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr *ngIf="getData(item) as genre">
+      <td>
+        <p-tableCheckbox [value]="genre"></p-tableCheckbox>
+      </td>
+      <td>{{ genre.id }}</td>
+      <td>{{ genre.name }}</td>
+      <td><button pButton icon="pi pi-pencil" class="p-button-rounded" (click)="openGenreModal(genre.id)"></button></td>
+    </tr>
+  </ng-template>
+</p-table>

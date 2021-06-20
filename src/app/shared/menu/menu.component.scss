@@ -1,0 +1,28 @@
+header {
+  background: var(--vl-color-header-bg);
+  box-shadow: 0 12px 18px var(--vl-color-header-shadow);
+  padding: 1rem;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    max-width: 7.5rem;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  span.p-input-filled {;
+    .p-inputtext[type=search] {
+      background: darken(#fff, 6%);
+      border: none;
+      width: 25rem;
+    }
+  }
+}
