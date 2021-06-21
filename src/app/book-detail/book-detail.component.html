@@ -3,10 +3,87 @@
     <img [src]="book?.coverUri || defaultCoverUri" alt="">
   </figure>
 
-  <div class="details">
-    <h1>{{ book?.title }}</h1>
+  <div class="book-info">
+    <div class="header">
+      <h1>{{ book?.title }}
+        <button pButton type="button"
+                class="p-button-rounded p-button-text p-button-danger"
+                icon="pi pi-star"
+                (click)="op.toggle($event)"
+                label="Avaliar"
+                *ngIf="authService.isLogged">
+        </button>
+      </h1>
+    </div>
 
-    <h2>Descrição:</h2>
-    <p>{{ book?.description }}</p>
+    <div>
+      <h2>Descrição:</h2>
+      <p>{{ book?.description }}</p>
+    </div>
+
+    <div>
+      <h2>Lançamento:</h2>
+      <p>{{ book?.releaseDate | date: 'dd/MM/YYYY' }}</p>
+    </div>
+
+    <div>
+      <h2>Autor:</h2>
+      <p>{{ book?.authors | authors }}</p>
+    </div>
+
+    <div>
+      <h2>Gênero:</h2>
+      <p>{{ book?.genres | genres }}</p>
+    </div>
+
+    <div>
+      <h2>Editora:</h2>
+      <p>{{ book?.publishers | publishers }}</p>
+    </div>
+
+    <div class="reviews">
+      <p-divider align="center">Avaliações</p-divider>
+
+      <div class="reviews-listing">
+        <div class="empty-state" *ngIf="!reviews || reviews.length == 0">
+          <p>Este livro ainda não possui avaliações.</p>
+        </div>
+
+        <div class="review" *ngFor="let review of reviews">
+          <p-fieldset legend="{{ review.user?.name }}">
+            <div class="review-score">
+              <p-rating [ngModel]="review.score!" [readonly]="true" [cancel]="false"></p-rating>
+            </div>
+            <div class="review-comment">
+              {{ review.comment }}
+            </div>
+          </p-fieldset>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<p-overlayPanel #op appendTo="body">
+  <ng-template pTemplate>
+    <div class="post-review">
+      <form [formGroup]="reviewForm" (ngSubmit)="postReview(op)">
+        <div class="app-form-control p-input-filled">
+          <label for="score" class="app-label">Nota:</label>
+          <p-rating id="score" formControlName="score"></p-rating>
+        </div>
+        <div class="app-form-control p-input-filled">
+          <label for="comment" class="app-label">Comentário</label>
+          <textarea pInputTextarea id="comment" [autoResize]="true" formControlName="comment"
+                    class="app-input"></textarea>
+        </div>
+
+        <button type="submit" pButton label="Cancelar" icon="pi pi-times" class="p-button-text"
+                (click)="clear($event, op)"></button>
+        <button type="submit" pButton [loading]="isLoading" label="Publicar" icon="pi pi-comment"
+                class="p-button-rounded"></button>
+      </form>
+    </div>
+  </ng-template>
+</p-overlayPanel>

@@ -8,8 +8,8 @@
       backdrop-filter: blur(5px);
     }
 
-    .p-dialog-content {
-      height: 100%;
+    .p-dialog .p-dialog-content {
+      padding: 2rem;
     }
   }
 
