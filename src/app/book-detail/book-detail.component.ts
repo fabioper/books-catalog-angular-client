@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { BooksService } from "../core/services/books/books.service";
 import { BookModel } from "../core/models/book.model";
@@ -7,6 +7,8 @@ import { AuthService } from "../core/services/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ReviewsService } from "../core/services/reviews/reviews.service";
 import { BookReviewModel } from "../core/models/book-review.model";
+import { OverlayPanel } from "primeng/overlaypanel";
+import { tap } from "rxjs/operators";
 
 export interface BookDetailsComponentConfig {
   bookId: number;
@@ -38,12 +40,12 @@ export class BookDetailComponent implements OnInit {
   ngOnInit(): void {
     this.loadBookData(this._bookData.bookId).then()
     this.initReviewForm();
-    this.loadReviews();
   }
 
   private async loadBookData(bookId: number) {
     try {
       this.book = await this.booksService.getBook(bookId).toPromise();
+      this.loadReviews();
     } catch (e) {
       if (e.status !== 404) {
         this.toastrService.error('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde');
@@ -55,16 +57,18 @@ export class BookDetailComponent implements OnInit {
     }
   }
 
-  postReview() {
+  postReview(op: OverlayPanel) {
+    this.isLoading = true;
     const review: BookReviewModel = {
       ...this.reviewForm.value,
       bookId: this.book?.id,
-      userId: this.authService.loggedUser?.id
+      userGuid: this.authService.loggedUser?.id
     }
 
-    this.reviewsService.postReview(review).subscribe(() => {
-      this.loadReviews();
-    })
+    this.reviewsService.postReview(review).pipe(tap(
+      () => this.reviewCreated(op),
+      e => this.handleError(e)
+    )).subscribe()
   }
 
   private initReviewForm() {
@@ -74,9 +78,10 @@ export class BookDetailComponent implements OnInit {
     })
   }
 
-  clear(event: MouseEvent) {
+  clear(event: MouseEvent, op: OverlayPanel) {
     event.preventDefault();
     this.reviewForm.reset();
+    op.hide();
   }
 
   private loadReviews() {
@@ -85,5 +90,19 @@ export class BookDetailComponent implements OnInit {
         this.reviews = reviews.data;
       })
     }
+  }
+
+  private reviewCreated(op: OverlayPanel) {
+    this.reviewForm.reset();
+    op.hide();
+    this.isLoading = false;
+    this.toastrService.success('Avaliação publicada.')
+    this.loadReviews();
+  }
+
+  private handleError(e: any) {
+    console.log(e);
+    this.isLoading = false;
+    this.toastrService.error('Ocorreu um erro ao salvar esta avaliação. Tente novamente mais tarde.')
   }
 }

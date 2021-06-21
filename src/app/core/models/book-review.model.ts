@@ -2,5 +2,5 @@ export class BookReviewModel {
   score?: number;
   comment?: string;
   bookId?: number;
-  userId?: number;
+  user?: { guid: string, name: string };
 }
