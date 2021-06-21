@@ -61,14 +61,3 @@ h1 {
     font-size: .95rem;
   }
 }
-
-
-::ng-deep p-dynamicDialog {
-  .p-dialog-mask {
-    backdrop-filter: blur(5px);
-  }
-
-  .p-dialog .p-dialog-content {
-    padding: 0;
-  }
-}
