@@ -6,6 +6,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { ReactiveFormsModule } from "@angular/forms";
 import { PublishersPipe } from './pipes/publishers.pipe';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { PublishersPipe } from './pipes/publishers.pipe';
     GenresPipe,
     TruncatePipe,
     PublishersPipe,
+    SafeUrlPipe,
   ],
   exports: [
     AuthorsPipe,
     GenresPipe,
     TruncatePipe,
     PublishersPipe,
+    SafeUrlPipe,
   ],
   imports: [
     CommonModule,

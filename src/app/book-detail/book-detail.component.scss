@@ -1,7 +1,6 @@
 section {
   display: grid;
-  grid-template-columns: auto 50%;
-  gap: 2rem;
+  grid-template-columns: 45% auto;
   padding: 0;
 
   @media (max-width: 1000px) {
@@ -22,7 +21,6 @@ img {
 
 h1 {
   font-size: 2rem;
-  margin: 0 0 1rem 0;
 }
 
 h2 {
@@ -31,8 +29,16 @@ h2 {
 
 .book-info {
   line-height: 1.5;
-  padding: 2rem 2rem 2rem 0;
+  padding: 2rem;
   overflow: auto;
+
+  .header {
+    margin-bottom: 2rem;
+    p {
+      color: #666;
+      font-size: 1.1rem;
+    }
+  }
 
   & > * {
     margin-bottom: .5rem;
@@ -46,9 +52,15 @@ h2 {
 }
 
 ::ng-deep p-dynamicDialog {
+  .p-dynamic-dialog.p-dialog {
+    min-width: 55%;
+    max-width: 1200px;
+  }
+
   .p-dynamic-dialog.p-dialog,
   :host, :host > section {
     height: 100%;
+    /*flex-direction: unset;*/
   }
 
   .p-dialog-mask {
@@ -58,6 +70,7 @@ h2 {
   .p-dialog .p-dialog-content {
     padding: 0;
     overflow: hidden;
+    height: 100%;
   }
 }
 

@@ -12,7 +12,7 @@ import { ToolbarModule } from "primeng/toolbar";
 import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { AuthorFormComponent } from './author-catalog/author-form/author-form.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { CalendarModule } from "primeng/calendar";
 import { InputTextareaModule } from "primeng/inputtextarea";
@@ -51,7 +51,8 @@ import { PublisherFormComponent } from './publishers-catalog/publisher-form/publ
     CalendarModule,
     InputTextareaModule,
     FileUploadModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    FormsModule
   ]
 })
 export class CatalogManagementModule { }

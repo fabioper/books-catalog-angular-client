@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "../../../shared/services/toastr.service";
 import { BooksService } from "../../../core/services/books/books.service";
-import { AuthorModel } from "../../../core/models/author.model";
 import { BookModel } from "../../../core/models/book.model";
 import { SelectItem } from "primeng/api";
 import { AuthorService } from "../../../core/services/authors/author.service";
 import { GenresService } from "../../../core/services/genres/genres.service";
 import { PublishersService } from "../../../core/services/publishers.service";
+import { FileUpload } from "primeng/fileupload";
 
 export interface BookFormConfig {
   bookId?: number;
@@ -20,6 +20,7 @@ export interface BookFormConfig {
   styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
+  @ViewChild('uploaderComponent') uploader!: FileUpload;
 
   private readonly _bookData!: BookFormConfig;
 
@@ -29,6 +30,7 @@ export class BookFormComponent implements OnInit {
   authorsOptions: SelectItem[] = [];
   genreOptions: SelectItem[] = [];
   publishersOptions: SelectItem[] = [];
+  imagePreview?: string;
 
   constructor(private ref: DynamicDialogRef,
               private config: DynamicDialogConfig,
@@ -69,8 +71,10 @@ export class BookFormComponent implements OnInit {
         releaseDate: new Date(book.releaseDate),
         genreIds: book.genres.map(x => ({ value: x.id, label: x.name }) as SelectItem),
         publisherIds: book.publishers.map(x => ({ value: x.id, label: x.name }) as SelectItem),
-        authorsIds: book.authors.map(x => ({ value: x.id, label: x.name }) as SelectItem)
+        authorIds: book.authors.map(x => ({ value: x.id, label: x.name }) as SelectItem)
       })
+
+      this.imagePreview = book.coverUri;
     })
   }
 
@@ -106,7 +110,9 @@ export class BookFormComponent implements OnInit {
   }
 
   fileUpload(selectedFile: any) {
-    this.bookForm.get('imageFile')?.setValue(selectedFile?.files[0]);
+    const file = selectedFile?.files[0];
+    this.bookForm.get('imageFile')?.setValue(file);
+    this.imagePreview = URL.createObjectURL(file);
   }
 
   loadAuthorOptions($event: any) {

@@ -1,0 +1,35 @@
+.file-upload {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 7rem;
+}
+
+.preview {
+  padding: 1rem;
+  text-align: center;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 100%;
+
+  span {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  img {
+    height: 5rem;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+/*
+::ng-deep p-dynamicDialog .p-dialog .p-dialog-content {
+  padding-top: 0;
+}
+*/

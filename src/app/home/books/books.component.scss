@@ -6,11 +6,15 @@ h1 {
 
 .books {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   align-items: flex-start;
   align-content: center;
-  grid-gap: 1rem;
+  grid-auto-rows: 1fr;
   gap: 1rem;
+
+  &:hover .book {
+    transform: scale(.9);
+  }
 }
 
 .book {
@@ -23,19 +27,36 @@ h1 {
   position: relative;
   height: 100%;
   transition: .3s ease-in-out;
+  box-shadow: 0 30px 30px -20px #020202de;
 
+  &:after {
+    content: '';
+    background: linear-gradient(219deg, #ffffff0a 40%, transparent 0%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    transform: scale(1.01) !important;
+  }
 
   &-cover {
     width: 100%;
     height: 100%;
     display: block;
+    transition: .5s linear;
+    object-fit: cover;
   }
 
   &-description {
     position: absolute;
     bottom: 0;
     left: 0;
-    background: linear-gradient(15deg, #120e19f2 10%, transparent 70%);
+    /*background: linear-gradient(45deg, black, transparent);*/
+    background: linear-gradient(1deg, #2b2f40ed 10%, transparent 40%);
     width: 100%;
     padding: 1rem !important;
     color: #fff;

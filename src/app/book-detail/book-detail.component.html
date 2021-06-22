@@ -14,6 +14,7 @@
                 *ngIf="authService.isLogged">
         </button>
       </h1>
+      <p>{{ book?.authors | authors }}</p>
     </div>
 
     <div>
@@ -24,11 +25,6 @@
     <div>
       <h2>Lançamento:</h2>
       <p>{{ book?.releaseDate | date: 'dd/MM/YYYY' }}</p>
-    </div>
-
-    <div>
-      <h2>Autor:</h2>
-      <p>{{ book?.authors | authors }}</p>
     </div>
 
     <div>
@@ -54,7 +50,7 @@
             <div class="review-score">
               <p-rating [ngModel]="review.score!" [readonly]="true" [cancel]="false"></p-rating>
             </div>
-            <div class="review-comment">
+            <div class="review-comment" *ngIf="review.comment">
               {{ review.comment }}
             </div>
           </p-fieldset>
